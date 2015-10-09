@@ -1,0 +1,23 @@
+{
+  "name": "ng2test",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sonicgd/ng2test",
+  "authors": [
+    "SonicGD <sonicgd@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.10.6"
+  }
+}

@@ -6,17 +6,21 @@
 </head>
 
 <body>
-    <hello-app>Loading...</hello-app>
+<tw-app>
+    Loading...
+</tw-app>
 </body>
 
 <!-- ES6-related imports -->
-<script src="/node_modules/systemjs/dist/system-csp-production.js"></script>
+<script src="node_modules/systemjs/dist/system-csp-production.js"></script>
 
 <script>
     //configure system loader
     System.config({defaultJSExtensions: true});
 </script>
-<script src="/node_modules/angular2/bundles/angular2.min.js"></script>
+<script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+<script src="node_modules/angular2/bundles/http.dev.js"></script>
+<script src="bower_components/moment/moment.js"></script>
 
 <script>
     //bootstrap the Angular2 application

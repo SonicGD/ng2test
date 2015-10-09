@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es5",
+        "module": "system",
+        "declaration": false,
+        "noImplicitAny": false,
+        "removeComments": true,
+        "noLib": false
+    },
+    "fileGlobs": [
+        "./modules/**/*.ts",
+        "./tools/**/*.ts",
+        "!./node_modules/**",
+        "!./modules_dart/**",
+        "!./packages/**",
+        "!./dist/**",
+        "!./temp/**"
+    ]
+}

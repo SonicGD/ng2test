@@ -2,7 +2,8 @@ var gulp = require('gulp');
 
 var PATHS = {
     src: 'src/**/*.ts',
-    typings: 'node_modules/angular2/bundles/typings/angular2/angular2.d.ts'
+    ngTypings: 'typings/angular2/*.d.ts',
+    momentTypings: 'typings/moment/*.d.ts'
 };
 
 gulp.task('clean', function (done) {
@@ -12,13 +13,16 @@ gulp.task('clean', function (done) {
 
 gulp.task('ts2js', function () {
     var typescript = require('gulp-typescript');
-    var tsResult = gulp.src([PATHS.src, PATHS.typings])
+    var tsResult = gulp.src([PATHS.src, PATHS.ngTypings, PATHS.momentTypings])
         .pipe(typescript({
-            noImplicitAny: true,
             module: 'system',
             target: 'ES5',
-            emitDecoratorMetadata: true,
-            experimentalDecorators: true
+            "emitDecoratorMetadata": true,
+            "experimentalDecorators": true,
+            "declaration": false,
+            "noImplicitAny": false,
+            "removeComments": true,
+            "noLib": false,
         }));
 
     return tsResult.js.pipe(gulp.dest('dist'));

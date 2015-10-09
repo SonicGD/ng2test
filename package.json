@@ -1,15 +1,15 @@
 {
-  "name": "ng2-play.ts",
+  "name": "ng2test",
   "version": "1.0.0-SNAPSHOT",
   "description": "A minimal Angular2 playground using TypeScript",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pkozlowski-opensource/ng2-play.ts.git"
+    "url": "git+https://github.com/sonicgd/ng2test.git"
   },
   "bugs": {
-    "url": "https://github.com/pkozlowski-opensource/ng2-play.ts/issues"
+    "url": "https://github.com/sonicgd/ng2test.ts/issues"
   },
-  "homepage": "https://github.com/pkozlowski-opensource/ng2-play.ts#readme",
+  "homepage": "https://github.com/sonicgd/ng2test.ts#readme",
   "devDependencies": {
     "connect": "^3.4.0",
     "del": "^1.2.0",
@@ -19,7 +19,7 @@
     "serve-static": "^1.10.0"
   },
   "dependencies": {
-    "angular2": "2.0.0-alpha.39",
+    "angular2": "2.0.0-alpha.40",
     "systemjs": "0.18.4"
   }
 }
