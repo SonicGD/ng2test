@@ -33,30 +33,49 @@ class RedColorDirective {
     directives: [NgIf, NgFor, RedColorDirective],
     pipes: [TSPipe, SlicePipe],
     template: `
-    <div *ng-if="config">
+    <input type="text" [value]="token" (input)="token = $event.target.value"/>
+    <input type="text" [value]="channel" (input)="channel = $event.target.value"/>
+    <input type="button" (click)="getMessages()" value="Get!"/>
     <p *ng-for="#message of messages">
         <span red>{{message.username}}, {{message.ts|ts}}</span>: {{message.text|slice:0:20}}
     </p>
-    </div>`
+    <p>{{error}}</p>`
 })
 export class TWApp {
     config:Object;
     messages:Object[];
 
+    token:string = '';
+    channel:string = 'C08MD084E';
+    error:string = '';
+
+    http:Http;
+
     constructor(http:Http) {
-        http.get('./src/config.json').map(res => res.json()).subscribe(res => {
-            this.config = res;
-            var service = new SlackService(this.config, http);
-            service.check().subscribe(res => {
-                if (res.ok) {
-                    service.get('channels.history', {channel: "C08MD084E"}).subscribe(res=> {
-                        if (res.ok) {
-                            this.messages = res.messages;
-                            console.log(res);
-                        }
-                    });
-                }
-            });
+        this.http = http;
+    }
+
+    getMessages() {
+        this.error = '';
+        var service = new SlackService({
+            "url": "https://slack.com/api/",
+            "accessToken": this.token
+        }, this.http);
+        service.check().subscribe(res => {
+            if (res.ok) {
+                service.get('channels.history', {channel: this.channel}).subscribe(res=> {
+                    if (res.ok) {
+                        this.messages = res.messages;
+                        console.log(res);
+                    }
+                    else {
+                        this.error = res.error;
+                    }
+                });
+            }
+            else {
+                this.error = res.error;
+            }
         });
     }
 }
