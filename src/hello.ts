@@ -1,4 +1,4 @@
-import {Component, View, NgFor, NgIf, ElementRef, Inject, Pipe, SlicePipe} from 'angular2/angular2';
+import {Component, View, NgFor, NgIf, ElementRef, Inject, Pipe, SlicePipe, Directive} from 'angular2/angular2';
 import {Http, HTTP_BINDINGS} from "angular2/http";
 import {bootstrap} from 'angular2/angular2';
 
@@ -18,15 +18,24 @@ class TSPipe {
     }
 }
 
+@Directive({
+    selector: '[red]'
+})
+class RedColorDirective {
+    constructor(@Inject(ElementRef) el:ElementRef) {
+        var htmlElement:HTMLElement = el.nativeElement;
+        htmlElement.style.color = "red";
+    }
+}
 
 @Component({selector: 'tw-app'})
 @View({
-    directives: [NgIf, NgFor],
+    directives: [NgIf, NgFor, RedColorDirective],
     pipes: [TSPipe, SlicePipe],
     template: `
     <div *ng-if="config">
     <p *ng-for="#message of messages">
-        <span>{{message.username}}, {{message.ts|ts}}</span>: {{message.text|slice:0:20}}
+        <span red>{{message.username}}, {{message.ts|ts}}</span>: {{message.text|slice:0:20}}
     </p>
     </div>`
 })
